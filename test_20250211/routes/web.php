@@ -29,13 +29,19 @@ Route::get('/user/auth/search/{user_id}',
             'login', 
             'App\Http\Controllers\UserAuthController@Login'
         );
-        Route::get(
-            'search/{user_id}', 
- 'App\Http\Controllers\UserAuthController@search'
-        );
+//         Route::get(
+//             'search/{user_id}', 
+//  'App\Http\Controllers\UserAuthController@search'
+//         );
         Route::get(
             'signup', 
-            'App\Http\Controllers\UserAuthController@signup');
-        
+            'App\Http\Controllers\UserAuthController@signup'
+        );
+
+        Route::post(
+        'signup', 
+        'App\Http\Controllers\UserAuthController@signup');
     });
+    
+    
 });

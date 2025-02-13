@@ -11,6 +11,7 @@
 </div>  -->
 @include('component.errors') <!--到component裡errors資料夾-->
 <form action="/user/auth/signup" method="post">
+{{ csrf_field() }}
 暱稱： <input type="text" name="nickname" 
             placeholder="暱稱" value="{{old('nickname')}}"><br>
     Email: <input type="text" name="email" 

@@ -35,12 +35,12 @@ Route::get('/user/auth/search/{user_id}',
 //         );
         Route::get(
             'signup', 
-            'App\Http\Controllers\UserAuthController@signup'
+            'App\Http\Controllers\UserAuthController@signupPage'
         );
 
         Route::post(
         'signup', 
-        'App\Http\Controllers\UserAuthController@signup');
+        'App\Http\Controllers\UserAuthController@signupProcess');
     });
     
     

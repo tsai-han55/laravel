@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Hash;
 use App\Shop\Entity\User;
+use Illuminate\Support\Facades\Mail;
 
 class UserAuthController extends Controller
 {
@@ -42,7 +43,36 @@ class UserAuthController extends Controller
             $input['password'] = Hash::make($input['password']);
             print_r($input);
             User::create($input);
+
+            Mail::send('email.signup', 
+                        ['nickname' => $input['nickname']], 
+                        function($message) use ($input) {
+                      $message->to($input['email'], $input['nickname'])
+                      ->from('aoao00005@gmail.com')
+                      ->subject('恭喜恭喜恭喜恭喜');
+                    }
+                );
+
+            print('over');
+                
         }
+        
+    }
+    public function SignInPage()
+    {
+        $binding = [
+            'title' => '登入',
+            'note' => '使用者登入頁面'
+        ];
+        return view('auth.signin', $binding);
+    }
+    public function SignInProcess()
+    {
+        $input = request()->all();
+        print_r($input);
+        //  將登入邏輯寫進去
+        // 1. 判斷資料庫裏面有沒有該帳號
+        // 2. 若有該帳號則判斷密碼加密後是否一致
     }
 
 }

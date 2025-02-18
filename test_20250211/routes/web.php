@@ -17,11 +17,11 @@ Route::get('/page2', function () {
     return 'page2';
 });
 
-Route::get('/user/auth/login', 
-            'App\Http\Controllers\UserAuthController@Login');
+ Route::get('/user/auth/login', 
+             'App\Http\Controllers\UserAuthController@Login');
 
-Route::get('/user/auth/search/{user_id}', 
- 'App\Http\Controllers\UserAuthController@search');
+ Route::get('/user/auth/search/{user_id}', 
+  'App\Http\Controllers\UserAuthController@search');
 
  Route::group(['prefix' => 'user'], function () {
     Route::group(['prefix' => 'auth'], function () {
@@ -54,7 +54,26 @@ Route::get('/user/auth/search/{user_id}',
             'signout',
             'App\Http\Controllers\UserAuthController@SignOut'
         );
+        Route::get(
+            'signout',
+            'App\Http\Controllers\UserAuthController@SignOut'
+        );
     });
     
     
+});
+Route::group(['prefix' => 'merchandise'], function () {
+    Route::get(
+        'create',
+        'App\Http\Controllers\MerchandiseController@MerchandiseCreateProcess'
+    );
+    
+    Route::get(
+        '{merchandise_id}/edit',
+        'App\Http\Controllers\MerchandiseController@MerchandiseEditPage'
+    );
+    Route::post(
+        '{merchandise_id}/edit',
+        'App\Http\Controllers\MerchandiseController@MerchandiseEditProcess'
+    );
 });
